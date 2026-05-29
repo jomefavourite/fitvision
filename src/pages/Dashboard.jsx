@@ -23,13 +23,16 @@ export default function Dashboard() {
 
   return (
     <div className="has-bottom-nav" style={{ minHeight: '100vh' }}>
-      {/* Hero header */}
-      <div className="dashboard-hero" style={{
-        background: 'linear-gradient(160deg, var(--ink) 0%, #1E1040 100%)',
-        padding: '40px 28px 32px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
+      <div style={{ padding: '32px 0 24px' }}>
+        {/* Hero header */}
+        <div className="dashboard-hero" style={{
+          background: 'linear-gradient(160deg, var(--ink) 0%, #1E1040 100%)',
+          borderRadius: 20,
+          padding: '32px 28px',
+          marginBottom: 24,
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
         <div style={{ position: 'absolute', top: -60, right: -60, width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>{greeting},</p>
         <h1 style={{ fontFamily: 'Cormorant Garamond,serif', fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 600, color: 'white', textTransform: 'capitalize', lineHeight: 1.1 }}>{name} ✨</h1>
@@ -49,9 +52,8 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
-      </div>
+        </div>
 
-      <div style={{ padding: '24px 24px 0' }}>
         {/* Hero CTA */}
         <div onClick={() => navigate('/design/occasion')}
           style={{

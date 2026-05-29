@@ -255,7 +255,7 @@ img { max-width: 100%; display: block; }
 
   /* Dashboard hero bigger */
   .dashboard-hero {
-    padding: 48px !important;
+    padding: 40px !important;
   }
 }
 
