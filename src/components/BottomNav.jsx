@@ -15,14 +15,7 @@ export default function BottomNav() {
   const active = tabs.findIndex(t => location.pathname.startsWith(t.path));
 
   return (
-    <nav style={{
-      position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)',
-      width: '100%', maxWidth: 430, background: 'white',
-      borderTop: '1px solid rgba(74,29,143,0.08)',
-      display: 'flex', zIndex: 100,
-      boxShadow: '0 -4px 24px rgba(14,11,26,0.08)',
-      paddingBottom: 'env(safe-area-inset-bottom)',
-    }}>
+    <nav className="bottom-nav">
       {tabs.map((tab, i) => {
         const Icon = tab.icon;
         const isActive = i === active;
