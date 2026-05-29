@@ -218,6 +218,28 @@ export const occasionOutfitImages = {
   ]
 };
 
+export const demoUser = {
+  email: "demo@fitvision.app",
+  name: "Demo User",
+  password: "demo1234",
+  profile: {
+    bodyType: "athletic",
+    aesthetics: ["Afrocentric", "Glamour", "Formal / Corporate"],
+    budget: 150000,
+    city: "Lagos",
+  },
+  measurements: { chest: "96", waist: "78", hips: "100", height: "178" },
+};
+
+// Seed a fully-populated demo account so anyone can explore the whole app
+// instantly, without signing up. Returns nothing — just primes localStorage.
+export function seedDemoSession() {
+  localStorage.setItem("fv_user", JSON.stringify(demoUser));
+  if (!localStorage.getItem("fv_lookbook")) {
+    localStorage.setItem("fv_lookbook", JSON.stringify(sampleLookbook));
+  }
+}
+
 export const sampleLookbook = [
   {
     id: "lb1",

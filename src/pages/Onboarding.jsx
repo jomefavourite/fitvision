@@ -38,7 +38,7 @@ export default function Onboarding() {
   const progressPct = (step / 3) * 100;
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--cream)" }} style={{ minHeight: '100vh', background: 'var(--cream)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--cream)', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <div style={{ padding: '24px 24px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>

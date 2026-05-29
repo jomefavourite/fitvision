@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Sparkles, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { Sparkles, Mail, Lock, Eye, EyeOff, ArrowLeft, Wand2 } from 'lucide-react';
+import { seedDemoSession } from '../data.js';
 
 export default function Auth({ mode }) {
   const navigate = useNavigate();
@@ -11,6 +12,13 @@ export default function Auth({ mode }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isSignup = mode === 'signup';
+
+  const handleDemo = () => {
+    setError('');
+    setLoading(true);
+    seedDemoSession();
+    setTimeout(() => navigate('/dashboard'), 600);
+  };
 
   const handleSubmit = () => {
     setError('');
@@ -58,6 +66,18 @@ export default function Auth({ mode }) {
     };
     localStorage.setItem('fv_user', JSON.stringify(user));
     setTimeout(() => navigate('/onboarding'), 800);
+  };
+
+  const handleGoogle = () => {
+    setError('');
+    setLoading(true);
+    // Mock Google OAuth: reuse an existing account if present, else create one.
+    const existing = JSON.parse(localStorage.getItem('fv_user') || 'null');
+    const user = existing?.email
+      ? existing
+      : { email: 'you@gmail.com', name: 'Google User' };
+    localStorage.setItem('fv_user', JSON.stringify(user));
+    setTimeout(() => navigate(user.profile ? '/dashboard' : '/onboarding'), 800);
   };
 
   const inputStyle = {
@@ -140,6 +160,17 @@ export default function Auth({ mode }) {
             {isSignup ? 'Start designing your perfect outfits' : 'Sign in to your FitVision account'}
           </p>
         </div>
+
+        {/* Demo — one tap into the full prototype, no signup */}
+        <button onClick={handleDemo} disabled={loading}
+          style={{ width: '100%', padding: '14px', border: 'none', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, fontSize: 14.5, fontWeight: 600, fontFamily: 'DM Sans,sans-serif', cursor: 'pointer', marginBottom: 12, color: 'var(--ink)', background: 'linear-gradient(135deg, #F0B94A, #C9921A)', boxShadow: '0 4px 18px rgba(201,146,26,0.35)', transition: 'transform 0.2s' }}
+          onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+          onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
+          <Wand2 size={17} /> {loading ? 'Loading demo...' : 'Explore the live demo'}
+        </button>
+        <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--ink-soft)', marginBottom: 20 }}>
+          Jump straight in — no account needed.
+        </p>
 
         {/* Google */}
         <button style={{ width: '100%', padding: '13px', border: '1.5px solid rgba(74,29,143,0.15)', background: 'white', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, fontSize: 14, fontFamily: 'DM Sans,sans-serif', cursor: 'pointer', marginBottom: 20, transition: 'border 0.2s' }}

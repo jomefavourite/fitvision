@@ -1,8 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowRight, Eye, MapPin, Scissors, Star } from 'lucide-react';
+import { Sparkles, ArrowRight, Eye, MapPin, Scissors, Star, Wand2 } from 'lucide-react';
+import { seedDemoSession } from '../data.js';
 
 export default function Landing() {
   const navigate = useNavigate();
+
+  const startDemo = () => {
+    seedDemoSession();
+    navigate('/dashboard');
+  };
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--ink)', display: 'flex', flexDirection: 'column' }}>
@@ -47,14 +53,17 @@ export default function Landing() {
               Describe your dream outfit. See it instantly with AI. Then find the best local tailors and boutiques in Lagos to bring it to life.
             </p>
 
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 18 }}>
               <button className="btn-primary" onClick={() => navigate('/signup')} style={{ padding: '15px 32px', fontSize: 16 }}>
                 Design My Outfit <ArrowRight size={18} />
               </button>
-              <button onClick={() => navigate('/login')} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', borderRadius: 50, padding: '15px 28px', fontSize: 15, fontFamily: 'DM Sans,sans-serif', cursor: 'pointer' }}>
-                Sign In
+              <button onClick={startDemo} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg, #F0B94A, #C9921A)', border: 'none', color: 'var(--ink)', borderRadius: 50, padding: '15px 28px', fontSize: 15, fontWeight: 600, fontFamily: 'DM Sans,sans-serif', cursor: 'pointer', boxShadow: '0 4px 18px rgba(201,146,26,0.35)' }}>
+                <Wand2 size={17} /> Try Live Demo
               </button>
             </div>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginBottom: 44 }}>
+              No signup required — explore the full experience in one tap.
+            </p>
 
             {/* Social proof */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
